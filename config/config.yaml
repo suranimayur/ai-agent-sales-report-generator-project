@@ -1,0 +1,48 @@
+data_paths:
+  raw: "data/raw"
+  processed: "data/processed"
+  curated: "data/curated"
+  reports: "data/reports"
+
+spark:
+  app_name: "SalesAnalytics"
+  executor_memory: "2g"
+  driver_memory: "2g"
+  shuffle_partitions: 8
+  default_parallelism: 8
+  adaptive_enabled: true
+  adaptive_coalesce_enabled: true
+  advisory_partition_size: "128MB"
+
+processing:
+  batch_size: 10000
+  max_workers: 4
+
+validation:
+  required_columns:
+    - order_id
+    - order_date
+    - customer_id
+    - product_id
+    - quantity
+    - unit_price
+    - total_amount
+    - profit
+    - discount_percentage
+    - payment_method
+    - order_status
+    - shipping_method
+    - shipping_cost
+    - delivery_days
+    - customer_region
+    - product_category
+  date_format: "yyyy-MM-dd"
+  min_date: "2023-01-01"
+  max_date: "2024-12-31"
+
+reporting:
+  output_format: ["csv", "parquet"]
+  compression: "gzip"
+  decimal_places: 2
+  currency_symbol: "$"
+  date_format: "yyyy-MM-dd"
